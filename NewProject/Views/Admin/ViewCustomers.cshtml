@@ -1,0 +1,68 @@
+﻿@model IEnumerable<NewProject.Models.Tbl_Customer>
+
+@{
+    ViewBag.Title = "ViewCustomers";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>List Of Customers</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerGender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerDateOfBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerMobileNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerEmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConfirmPassword)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerGender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerDateOfBirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerMobileNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerEmailAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConfirmPassword)
+        </td>
+    </tr>
+}
+
+</table>

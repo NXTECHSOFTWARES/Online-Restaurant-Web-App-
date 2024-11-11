@@ -1,0 +1,188 @@
+﻿@using NewProject.Models;
+<link rel="stylesheet" href="~/Content/MyCartStylesheet.css">
+@{
+    ViewBag.Title = "MY CART";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <div class="cart-title">
+        <p>MY CART</p>
+        <p>These are the items you selected</p>
+        <p>PRESS CHECKOUT TO PROCESSED</p>
+    </div>
+
+</header>
+
+@if (Session["cart"] == null)
+{
+    <img width="35%" height="35%" style="position:relative; left:50%; transform:translate(-50%); " src="~/Images/no-shopping-cart (1).png" />
+
+    <div style="color: red; font-size: 3rem; position: absolute; left: 50%; transform: translate(-50%); top:70%; text-transform:uppercase; text-shadow:2px 2px 2px black">
+        <strong>No Items added to cart!</strong>
+    </div>
+
+}
+else
+{
+
+
+    <div class="cart-container">
+
+        @{
+
+            List<Cart> cart = (List<Cart>)Session["cart"];
+            var count = cart.Count();
+            int TotalQ = 0;
+            double TotalP = 0;
+            if (count > 0)
+            {
+
+                for (int x = 0; x < count; x++)
+                {
+                    TotalQ += cart[x].Quantity;
+                    TotalP += TotalQ * Convert.ToDouble(cart[x].Product.Price);
+                }
+
+            }
+
+            int Total = 0;
+            var TotalQuantity = TotalQ;
+            var TotalPayment = TotalP;
+            var numOfItems = count;
+        }
+
+        @foreach (Cart item in (List<Cart>)Session["cart"])
+        {
+            int lineTotal = Convert.ToInt32(item.Quantity * item.Product.Price);
+            Total = Convert.ToInt32(Total + lineTotal);
+
+            <div class="cart-box">
+                <div class="remove-button">
+                    <a href="@Url.Action("RemoveCart", "Home", new { productId = item.Product.ProductId })">
+                        <i class="far fa-times-circle"></i>
+                    </a>
+                </div>
+                <div>
+                    <img src="~/Uploaded_Images/@item.Product.ProductImage" alt="A Picture of @item.Product.ProductImage">
+                </div>
+                <div>
+                    <p>@item.Product.ProductName.ToUpper()</p>
+                    <p>@item.Product.Category.CategoryName.ToUpper()</p>
+                    <P>Price:R @item.Product.Price</P>
+                    <p>
+                        <a href="@Url.Action("AddToCart", "Home", new { productId = item.Product.ProductId, url="MyCart" })"> <i class="fa fa-plus-circle" aria-hidden="true"></i> </a>
+                        <input type="text" name="" value=" @item.Quantity">
+                        <a href="@Url.Action("DecreaseQty", "Home", new { productId = item.Product.ProductId })"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
+                    </p>
+                    <p>TOTAL PRICE: R @lineTotal</p>
+                </div>
+            </div>
+        }
+
+        <div class="cart-summary">
+            <p>SUMMARY</p>
+            <p>Number of items</p>
+            <p class="output-label"> @numOfItems items</p>
+            <p>Total Quantity</p>
+            <p class="output-label"> @TotalQuantity In Total</p>
+
+            <div class="radio-group">
+
+                <input type="radio" name="delivery" checked value="delivery" id="devlivery" class="form-control">
+                <label for="delivery">Delivery</label>
+
+                <input type="radio" name="collection" value="collection" id="collection" class="form-control">
+                <label for="collection">Collect</label>
+            </div>
+
+            <p> TOTAL PAYMENT</p>
+            <p class="output-label" style="background-color:silver; border-radius:5px">R @TotalPayment </p>
+            <button type="button" data-target="#orderDetailsView" data--toggle="model"> CHECKOUT </button>
+        </div>
+    </div>
+
+    <div class="modal" id="orderDetailsView" data-keyboard="false" data-backdrop="static" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="model">&times;</button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+
+
+<!--<table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Image</th>
+                            <th>Line Total</th>>
+                        </tr>
+                    </thead>
+                    @{
+                        //int Total = 0;
+                    }
+                    <tbody>
+                        foreach (Cart item in (List<Cart>)Session["cart"])
+                        {
+                            //int lineTotal = Convert.ToInt32(item.Quantity * item.Product.Price);
+                            //Total = Convert.ToInt32(Total + lineTotal);
+
+                            //Session["SesTotal"] = Total;
+
+                            <tr>
+                                <td>item.Product.ProductName</td>
+                                <td>item.Product.Price</td>
+                                <td>
+                                    <div style="padding:1%; ">
+                                        <p style="float:left">
+                                            <a href="Url.Action("AddToCart", "Home", new { productId = item.Product.ProductId, url="Checkout" })">
+                                                <i class="fa fa-plus"></i>
+                                            </a>
+                                        </p>
+                                        <p style="float: left; margin-left:8px; margin-right:8px; padding:1%; font-size:1.5rem;">
+                                            item.Quantity
+                                        </p>
+                                        <p style="">
+                                            <a href="Url.Action("DecreaseQty", "Home", new { productId = item.Product.ProductId })">
+                                                <i class="fa fa-minus"></i>
+                                            </a>
+                                        </p>
+                                    </div>
+                                <td>
+                                    <img src="~/Uploaded_Images/item.Product.ProductImage" alt="" />
+                                </td>
+                                <td>
+                                    lineTotal
+                                </td>
+                            </tr>
+                        }-->
+@*<tr>
+        <td colspan="4" class="text-right"><b>Total: @Total</b></td>
+
+    </tr>*@
+<!--</tbody>
+</table>
+
+<div class="" style=" background-color: maroon; width: 100%; padding: 1%; display:flex; -ms-flex-direction:column">
+    <div>
+        <b style="float:left; font-size:1.4rem; color:white; @*margin-left:87%*@ ">Total Purchase: Total</b>
+        <a href="Url.Action("CheckoutDetails", "Home")" class="btn btn-success text-lg-center"-->
+@*style="margin-left:50%"*@
+<!-->Check-out >></a>
+    </div>
+
+
+</div>-->
+@*}*@

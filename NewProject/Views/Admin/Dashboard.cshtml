@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container">
+    <h2>ADMIN Dashboard</h2>
+    <button class="btn btn-default">@Html.ActionLink("Home", "Index", "Home")</button>
+
+    <div class="row">
+        <div class="col-dm-3">
+            <a href="@Url.Action("Product", "Admin")">
+                <div class="card">
+                    <div class="card-header">
+                        <img src="~/Images/products.jpeg" />
+                    </div>
+                    <div class="card-body">
+                        <h4>PRODUCTS</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+        <div class="col-dm-3">
+            <a href="@Url.Action("Categories", "Admin")">
+                <div class="card">
+                    <div class="card-header">
+                        <img src="~/Images/category.png" />
+                    </div>
+                    <div class="card-body">
+                        <h4>CATEGORIES</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-dm-3">
+            <a href="@Url.Action("ViewCustomer", "Admin")">
+                <div class="card">
+                    <div class="card-header">
+                        <img src="~/Images/customer.png" />
+                    </div>
+                    <div class="card-body">
+                        <h4>CUSTOMERS</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row"> 
+        <div class="col-dm-3">
+            <a href="@Url.Action("ViewDrivers", "Admin")">
+                <div class="card">
+                    <div class="card-header">
+                        <img src="~/Images/driver.png" />
+                    </div>
+                    <div class="card-body">
+                        <h4>DRIVERS</h4>
+                    </div>
+                </div>
+             </a>
+        </div>
+
+
+            <div class="col-dm-3">
+                <a href="@Url.Action("")">
+                    <div class="card" href="@Url.Action("")">
+                        <div class="card-header">
+                            <img src="~/Images/orders.png" />
+                        </div>
+                        <div class="card-body">
+                            <h4>ORDERS</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-dm-3">
+                <a href="@Url.Action("")">
+                    <div class="card">
+                        <div class="card-header">
+                            <img src="~/Images/reservations.png" />
+                        </div>
+                        <div class="card-body">
+                            <h4>RESERVATIONS</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+    </div>
+</div>

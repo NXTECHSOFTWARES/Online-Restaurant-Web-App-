@@ -1,0 +1,78 @@
+﻿@model IEnumerable<NewProject.Models.Tbl_Driver>
+
+@{
+    ViewBag.Title = "ViewDrivers";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>ViewDrivers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DriverIDNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DriverFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DriverLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DriverGender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DriverDateOfBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DriverMobileNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DriverEmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DriverDriverLicense)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DriverPassword)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DriverIDNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DriverFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DriverLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DriverGender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DriverDateOfBirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DriverMobileNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DriverEmailAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DriverDriverLicense)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DriverPassword)
+        </td>
+        <td>
+    </tr>
+}
+
+</table>

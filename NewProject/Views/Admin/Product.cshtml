@@ -1,0 +1,63 @@
+﻿@model IEnumerable<NewProject.Models.Tbl_Product >
+
+@{
+    ViewBag.Title = "List of Restuarant Product";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Product
+        <a href="../Admin/ProductAdd" class="btn btn-info pull-right fa fa-plus">Add New</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Product No.</th>
+                        <th>NAME</th>
+                        <th>PRICE</th>
+                        <th>CATEGORY</th>
+                        <th>IMAGE</th>
+                        <th>ACTION</th>
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Product No.</th>
+                        <th>NAME</th>
+                        <th>PRICE</th>
+                        <th>CATEGORY</th>
+                        <th>IMAGE</th>
+                        <th>ACTION</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        int count = 1;
+                    <tr>
+                        <td>@count</td>
+                        <td>@item.ProductName</td>
+                        <td>@item.Price</td>
+                        <td>@item.Category.CategoryName</td>
+                        <td> <img width="240px" height="180px" src="~/Uploaded_Images/@item.ProductImage" alt="" /></td>
+                        <td>
+                            @Html.ActionLink("Edit", "ProductEdit", new { productId = item.ProductId })
+                            @Html.ActionLink("Remove", "ProductRemove", new { productId = item.ProductId })
+                        </td>
+                       
+
+                    </tr>
+                        count++;
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

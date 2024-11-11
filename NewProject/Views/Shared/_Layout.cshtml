@@ -1,0 +1,215 @@
+﻿@using NewProject.Models;
+
+@{
+    OnlineRestuarantContext db = new OnlineRestuarantContext();
+    //List<Tbl_Category> category = db.Categories.();
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Online Restuarant</title>
+    @*@Styles.Render("~/Content/css")*@
+    <script src="https://kit.fontawesome.com/7c4ab5655a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    
+    @*<link rel="Stylesheet" href="~/Content/ProjectStylesheet.css"/>*@
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        nav {
+            display: flex;
+            flex-flow: row wrap;
+            width: 100%;
+            height: 5%;
+            background-color: maroon;
+            padding: 1.5%;
+            align-items: center;
+            position: fixed;
+            z-index: 1;
+            top:0px;
+        }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+                flex-flow: row wrap;
+                align-content: center;
+            }
+
+
+            nav
+            i {
+                color: black;
+                animation: buzz 2s 1s ease-in-out infinite alternate;
+                text-shadow: 0px 0px 0px;
+                padding: 1px;
+            }
+
+            nav ul li a:hover {
+                color: burlywood;
+                font-size: 1.3rem;
+            }
+
+            nav ul li a {
+                color: white;
+                text-decoration: none;
+                padding-left: 2rem;
+                font-size: 0.9rem;
+            }
+    </style>
+</head>
+<body>
+
+    @*<div class="navbar-collapse collapse">*@
+        <nav>
+            <ul>
+                <li class="active"><a href="@Url.Action("Index", "Home")"><i class="fas fa-home"></i> HOME </a></li>
+                <li><a href="@Url.Action("MyCart", "Home")"><i class="fas fa-shopping-cart"></i> MY CART </a></li>
+                <li><a href="/MyFavourity.html"><i class="fas fa-heart"></i> MY FAVOURITE </a></li>
+                <li><a href="/MyOrder.html"> <i class="fas fa-file-invoice"></i>MY ORDER </a></li>
+                <li><a href="/ContactUs.html"><i class="fas fa-phone"></i> CONTACT US </a></li>
+                <li><a href="/AboutUs.html"><i class="fas fa-users"></i> ABOUT US </a></li>
+                <li><a href=""> LOGIN </a></li>
+                <li><a href=""> CREATE ACCOUNT </a></li>
+            </ul>
+
+        </nav>
+    @*</div>*@
+
+    @*<div class="">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="container1">
+                    <div class="titleBackgroundContainer">
+                        <div class="titleBackground">
+                            <div class="titleStyle">
+                                <h2 class="title">HOSPITALITY RESTUARANT</h2>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>*@
+    <!--<div class="row">
+
+        <div class="col-md-12">
+            <div class="nav-menus">
+
+                <ul class="nav nav-pills">
+                    <li class="active">
+                        <a href="@Url.Action("Index","Home")"><i class="fas fa-home"></i> HOME </a>
+                    </li>-->
+    @*<li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="fas fa-list-alt"></i> CATEGORIES </a>
+            <ul class="dropdown-menu">
+                @if (category != null)
+                {
+                    foreach (Tbl_Category item in category)
+                    {
+                        <li>
+                            <a href="">@item.CategoryName</a>
+                        </li>
+                    }
+                }
+            </ul>
+        </li>*@
+
+    <!--@if (Session["cart"] != null)
+    {
+        for (int x = 1; x < ((List<Cart>)Session["cart"]).Count; x++)
+        {
+
+            <li class="dropdown">
+                <a href="@Url.Action("MyCart", "Home")"><i class="fas fa-shopping-cart"></i> MY CART(@x)</a>
+            </li>
+        }
+    }
+    <li class="dropdown">
+        <a href="@Url.Action("MyCart", "Home")"><i class="fas fa-shopping-cart"></i> MY CART(0)</a>
+    </li>
+
+    <li class="">
+        <a href=""><i class="fas fa-heart"></i> MY FAVOURITE</a>
+    </li>
+    <li class="">
+        <a href=""><i class="fas fa-file-invoice"></i> MY ORDER</a>
+    </li>
+    <li class="">
+        <a href="@Url.Action("About","Home")"><i class="fas fa-users"></i> ABOUT US </a>
+    </li>
+    <li class="">
+        <a href="@Url.Action("Contact","Home")"><i class="fas fa-phone"></i> CONTACT US </a>
+    </li>
+    <li class="">
+        <a href="@Url.Action("Dashboard","Admin")"><i class=""></i> ADMIN </a>
+    </li>
+    <li class="">
+
+        <a href="@Url.Action("Registration","Account")"><i class=""></i> Create Account </a>
+    </li>
+    <li class="">
+
+        <a href="@Url.Action("Login","Account")"><i class=""></i> Create Account </a>
+    </li>-->
+    @*<li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Cart(3) <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                @if (Session["cart"] != null)
+                {
+                    foreach (Cart item in (List<Cart>)Session["cart"])
+                    {
+                        <li>
+                            <a href="@Url.Action("RemoveFromCart", "Home", new { productId=item.Product.ProductId})">@item.Product.ProductName (@item.Quantity) <i class="fa fa-times"></i></a>
+                        </li>
+                    }
+                }
+                <li class="divider"></li>
+                <li><a href="@Url.Action("Checkout","Home")">Checkout</a></li>
+            </ul>
+        </li>*@
+    <!--</ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="header_container">
+        <div id="header">
+            <i>=(^.^)= @ViewBag.Title</i>
+            <span style="float:right; font-size:small">-->
+    @*@Html.Label(string.Format("Welcome {0} {1}", identity.FirstName, identity.LastName))*@
+    <!--@Html.ActionLink("Log out", "LogOut", "Account")}
+            </span>
+        </div>
+    </div>-->
+
+
+
+    @RenderBody()
+    <hr />
+
+    <footer class="card-footer">
+        <div class="row">
+            <div class="col-md-12 copyright">
+
+                <div class="col-md-6 col-sm-6 copyright-left">
+                    <p>&copy; @DateTime.Now.Year - Online Restaurant. All right reserved.</p>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("Stripe", required: false)
+</body>
+</html>

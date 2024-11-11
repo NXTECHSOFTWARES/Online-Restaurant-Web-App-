@@ -1,0 +1,117 @@
+﻿* {
+    margin: 0;
+    padding: 0%;
+    box-sizing: content-box;
+}
+
+body {
+    background-image: url('/Images/pexels-mister-mister-3490367.jpg');
+    background-repeat: repeat-x;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+nav {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    height: 5%;
+    background-color: maroon;
+    padding: 1.5%;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+}
+
+    nav ul {
+        display: flex;
+        list-style: none;
+        flex-flow: row wrap;
+        align-content: center;
+    }
+
+
+    nav
+    i {
+        color: black;
+        animation: buzz 2s 1s ease-in-out infinite alternate;
+        text-shadow: 0px 0px 0px;
+        padding: 1px;
+    }
+
+    nav ul li a:hover {
+        color: burlywood;
+        font-size: 1.3rem;
+    }
+
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        padding-left: 2rem;
+        font-size: 0.9rem;
+    }
+
+.copyright .copyright-right {
+    text-align: right;
+}
+
+.copyright .list-social {
+    float: right;
+    margin-top: -10px;
+}
+
+    .copyright .list-social > li {
+        display: inline;
+        float: left;
+        margin: 2px 5px;
+    }
+
+        .copyright .list-social > li > a {
+            display: block;
+            width: 30px;
+            height: 30px;
+            position: relative;
+            background: #ffffff;
+            border: 1px solid #ccc;
+            -webkit-border-radius: 100%;
+            -moz-border-radius: 100%;
+            -o-border-radius: 100%;
+            border-radius: 100%;
+            font-size: 20px;
+            color: #333333;
+        }
+
+            .copyright .list-social > li > a:hover {
+                background: #333333;
+                border: 1px solid #333333;
+                font-size: 20px;
+                color: #ffffff;
+            }
+
+            .copyright .list-social > li > a .fa {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-left: -8px;
+                margin-top: -9px;
+            }
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}

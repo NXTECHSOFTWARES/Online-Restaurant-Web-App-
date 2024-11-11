@@ -1,0 +1,370 @@
+﻿@using NewProject.Models;
+<link rel="Stylesheet" href="~/Content/MainStyle.css">
+
+@{
+    ViewBag.Title = "Home";
+}
+
+@{
+    OnlineRestuarantContext db = new OnlineRestuarantContext();
+    var products = db.Products.ToList();
+    var product = db.Products.OrderByDescending(s => s.numOfPurchase).ToList();
+}
+
+<div class="content-container">
+
+    <div class="introduction">
+        <p>Welcome</p>
+        <p>To</p>
+        <p>HOSPITALITY RESTUARANT</p>
+        <p>Get The Best Food And Service At Affordable Price</p>
+
+    </div>
+
+    <form method="post">
+        <div class="olSearch fr">
+            <input type="text" name="search" placeholder="Enter Keyword" class="inputComn form-control" />
+            <div class="searchIcon">
+                <button type="submit" class="searchBtn">
+                    <img src="~/Images/searchIcon.png" />
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div class="options-content">
+
+        <div class="delivery">
+
+            <img src="~/Images/delivery.jpg" alt="">
+
+            <p>DELIVERY</p>
+            <p>Get It While It Hot</p>
+            <p>Deliveries made on campus <br>and <br>DUT residents only</p>
+            <div class="icon">
+
+            </div>
+        </div>
+        <div class="reservations">
+            <img src="~/Images/reservations.jpg" alt="">
+            <p>RESERVATIONS</p>
+            <p>
+                We have a Table just waiting for you <br>
+                Click below to make a reservation
+            </p>
+            <button type="submit" name="submit">RESERVE</button>
+        </div>
+        <div class="collection">
+            <img src="~/Images/collection-counter.jpg">
+            <p>COLLECTION</p>
+            <p>WE MAKE IT AND KEEP FRESH FOR YOU</p>
+            <p>Collect your food at the Restuarant, quick and easy</p>
+        </div>
+    </div>
+
+    <div class="popular">
+
+    </div>
+
+    <div class="items-category">
+        <p>POPULAR</p>
+    </div>
+
+    <div class="food-content">
+        @foreach (var item in product)
+        {
+            <div class="food-card">
+                <img src="~/Uploaded_Images/@item.ProductImage" alt="A picture of @item.ProductName">
+
+                <p>@item.ProductName</p>
+                <p>@item.Category.CategoryName.ToUpper()</p>
+
+                <div class="food-destription">
+                    <p>@item.ProductDestription</p>
+                </div>
+                <p>Price: R @item.Price</p>
+
+                <div class="item-input">
+
+                    <i class="fas fa-heart" id="fav"></i>
+                    @using (Html.BeginForm("AddToCart", "Home", new { productId = item.ProductId, url = "Index" }, FormMethod.Post))
+                    {
+                        <button><i class="fa fa-cart-plus" aria-hidden="true"></i>Add To Cart</button>
+                    }
+                    <div>
+                        <p><i class="fa fa-plus-circle" aria-hidden="true"> <input type="text" name=""> <i class="fa fa-minus-circle" aria-hidden="true"></i></i></p>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="items-category">
+        <p>STARTERS</p>
+    </div>
+
+    <div class="food-content">
+        @foreach (var item in products)
+        {
+            if (item.Category.CategoryName.ToUpper().Equals("STARTERS"))
+            {
+                <div class="food-card">
+                    <img src="~/Uploaded_Images/@item.ProductImage" alt="A picture of @item.ProductName">
+
+                    <p>@item.ProductName</p>
+                    <p>STARTERS</p>
+
+                    <div class="food-destription">
+                        <p>@item.ProductDestription</p>
+                    </div>
+                    <p>Price: R @item.Price</p>
+
+
+
+                    <div class="item-input">
+
+                        <i class="fas fa-heart" id="fav"></i>
+                        @using (Html.BeginForm("AddToCart", "Home", new { productId = item.ProductId, url = "Index" }, FormMethod.Post))
+                        {
+                            <button><i class="fa fa-cart-plus" aria-hidden="true"></i>Add To Cart</button>
+                        }
+                        <div>
+                            <p><i class="fa fa-plus-circle" aria-hidden="true"> <input type="text" name=""> <i class="fa fa-minus-circle" aria-hidden="true"></i></i></p>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+    <div class="items-category">
+        <p>MAIN COURSE</p>
+    </div>
+    <div class="food-content">
+        @foreach (var item in products)
+        {
+            if (item.Category.CategoryName.ToUpper().Equals("MAIN COURSE"))
+            {
+                <div class="food-card">
+                    <img src="~/Uploaded_Images/@item.ProductImage" alt="@item.ProductName picture">
+
+                    <p>@item.ProductName</p>
+                    <p>MAIN COURSE</p>
+
+                    <div class="food-destription">
+                        <p>@item.ProductDestription</p>
+                    </div>
+                    <p>Price: R @item.Price</p>
+
+
+
+                    <div class="item-input">
+
+                        <i class="fas fa-heart" id="fav"></i>
+                        @using (Html.BeginForm("AddToCart", "Home", new { productId = item.ProductId, url = "Index", FormMethod.Post }))
+                        {
+                            <button><i class="fa fa-cart-plus" aria-hidden="true"></i>Add To Cart</button>
+                        }
+                        <div>
+                            <p><i class="fa fa-plus-circle" aria-hidden="true"> 
+                                <input type="text" name=""> 
+                                <i class="fa fa-minus-circle" aria-hidden="true"></i></i>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+
+
+    </div>
+
+    <div class="items-category">
+        <p>DESSERT</p>
+    </div>
+    <div class="food-content">
+
+        @foreach (var item in products)
+        {
+            if (item.Category.CategoryName.ToUpper().Equals("DESSERT"))
+            {
+                <div class="food-card">
+                    <img src="~/Uploaded_Images/@item.ProductImage" alt="@item.ProductName picture">
+
+                    <p>@item.ProductName</p>
+                    <p>DESSERT</p>
+
+                    <div class="food-destription">
+                        <p>@item.ProductDestription</p>
+                    </div>
+                    <p>Price: R @item.Price</p>
+
+
+
+                    <div class="item-input">
+
+                        <i class="fas fa-heart" id="fav"></i>
+                        @using (Html.BeginForm("AddToCart", "Home", new { productId = item.ProductId, url = "Index" }, FormMethod.Post))
+                        {
+                            <button><i class="fa fa-cart-plus" aria-hidden="true"></i>Add To Cart</button>
+                        }
+                        <div>
+                            <p><i class="fa fa-plus-circle" aria-hidden="true"> <input type="text" name=""> <i class="fa fa-minus-circle" aria-hidden="true"></i></i></p>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+
+
+
+    </div>
+
+    <div class="items-category">
+        <p>BEVERAGES</p>
+    </div>
+    <div class="food-content">
+
+        @foreach (var item in products)
+        {
+            if (item.Category.CategoryName.ToUpper().Equals("BEVERAGE"))
+            {
+                <div class="food-card">
+                    <img src="~/Uploaded_Images/@item.ProductImage" alt="@item.ProductName picture">
+
+                    <p>@item.ProductName</p>
+                    <p>BEVERAGES</p>
+
+                    <div class="food-destription">
+                        <p>@item.ProductDestription</p>
+                    </div>
+                    <p>Price: R @item.Price</p>
+
+
+
+                    <div class="item-input">
+
+                        <i class="fas fa-heart" id="fav"></i>
+
+                        @using (Html.BeginForm("AddToCart", "Home", new { productId = item.ProductId, url = "Index" }, FormMethod.Post))
+                        {
+                            <button><i class="fa fa-cart-plus" aria-hidden="true"></i>Add To Cart</button>
+                        }
+
+                        <div>
+                            <p><i class="fa fa-plus-circle" aria-hidden="true"> <input type="text" name=""> <i class="fa fa-minus-circle" aria-hidden="true"></i></i></p>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+
+
+    </div>
+</div>
+
+
+
+@*<div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <div class="reservations">
+                    <div>
+                        <img src="~/Images/How-to-Optimize-Table-Reservation-in-a-Restaurant.jpg" alt="reservation picture" />
+                    </div>
+                    <div class="textstyle1">
+                        <p>Welcome</p>
+                    </div>
+                    <div class="textstyle2">
+                        <a href="">WOULD YOU LIKE TO MAKE A RESERVATION?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+@*<div id="themeSlider" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#themeSlider" data-slide-to="0" class="active"></li>
+            <li data-target="#themeSlider" data-slide-to="1"></li>
+            <li data-target="#themeSlider" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="imgOverlay"></div>
+                <img style="height:420px;width:100%" src="~/Images/Picture 10.png" alt="First slide">
+                <div class="carousel-caption">
+                    <h3>Most Favoured</h3>
+
+                </div>
+            </div>
+            <div class="item">
+                <div class="imgOverlay"></div>
+                <img style="height:420px;width:100%" src="~/Images/Picture 8.png" alt="Second slide">
+                <div class="carousel-caption">
+                    <h3>2nd Most Favoured</h3>
+
+                </div>
+            </div>
+            <div class="item">
+                <div class="imgOverlay"></div>
+                <img style="height:420px;width:100%" src="~/Images/Picture 1.png" alt="Third slide">
+                <div class="carousel-caption">
+                    <h3>3nd Most Favoured</h3>
+
+                </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#themeSlider" data-slide="prev">
+            <span class="fa fa-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#themeSlider" data-slide="next">
+            <span class="fa fa-chevron-right"></span>
+        </a>
+
+    </div>*@
+
+@*<div class="olContent f1"><h2 style="color:black">Search Product/Category</h2></div>*@
+@*<form method="post">
+        <div class="olSearch fr">
+            <input type="text" name="search" placeholder="Enter Keyword" class="inputComn form-control" />
+            <div class="searchIcon">
+                <button type="submit" class="searchBtn">
+                    <img src="~/Images/searchIcon.png" />
+                </button>
+            </div>
+        </div>
+    </form>*@
+
+@*<div class="row product-container">
+        @foreach (var item in ViewBag.ListOfProducts)
+        {
+            <div class="col-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
+                <div class="thumbnail product-item" style="height:300px">
+
+                    <img class="img-responsive" title="Click to View Product detail"
+                         style="cursor:pointer;height:160px;width:100%"
+                         src="~/Uploaded_Images/@item.ProductImage" />
+
+                    <div class="caption">
+                        <h5>@item.ProductName</h5>
+                        <p>R @item.Price</p>
+                        <p>
+                            @using (Html.BeginForm("AddToCart", "Home", new { productId = item.ProductId, url = "Index" }, FormMethod.Post))
+                            {
+                                <button type="submit" class="pull-right"><i class="fa fa-shopping-cart"></i></button>
+                            }
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>*@
